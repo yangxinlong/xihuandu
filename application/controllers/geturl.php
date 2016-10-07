@@ -21,16 +21,17 @@ class Geturl extends CI_Controller {
     {
         ob_start();
         $sitename='纵横';
-      
+    
  
        // echo  $this->getpinyin->getAllPY('汉文字字');
        // return;
         $url="http://book.zongheng.com/rank/male/r4/c3/q0/".$page.".html";
         $str=file_get_contents($url);
+       
         $start='<ul class="main_con">';
         $end='</ul>';
         $liststr=explode($end,explode($start,$str)[1])[0];
-         
+        $liststr=str_replace('<li class="line"></li>','',$liststr);
         //echo($liststr);
         $arr=explode("</li>", $liststr);
         foreach($arr as $book){
@@ -39,7 +40,8 @@ class Geturl extends CI_Controller {
            //分类名
             $bookclass=explode(']',explode('[', $book)[1])[0];
             $bigclassid=$this->Bigclass->get_bigclass_id($bookclass);
-         
+           
+        
             $data='';
             if($bigclassid==NULL){
                 $data['typename']=$bookclass;
@@ -48,7 +50,8 @@ class Geturl extends CI_Controller {
                 $bigclassid = $this->Bigclass->set_bigclass($data);
                 echo '创建新分类'.$bookclass.'<br>';
             }
-           
+            
+            if(count($bigclassid)>0){
          //书页网址   
             $myurl=explode('"',explode('<a class="fs14" href="',$book)[1])[0];
            //书名
@@ -57,7 +60,7 @@ class Geturl extends CI_Controller {
        
            $menu_url= $this->Books->get_menu_url($bookname);
        
-           if($menu_url==NULL){
+           if($menu_url==NULL && $myurl!=NULL ){
                $str=file_get_contents($myurl);
                //图片
                $img_url=explode('" onerror=',explode('<img style="width: 172px; height: 230px;" alt="'.$bookname.'" src="',$str)[1])[0];
@@ -88,8 +91,9 @@ class Geturl extends CI_Controller {
                $data['source']=$sitename;
                $data['bigclassid']=$bigclassid;
                $data['lookcount']=0;
-               $data['source_url    ']=$myurl;
+               $data['source_url']=$myurl;
                $data['menu_url']=$menu_url;
+               $data['createtime']=date('Y-m-d H:i:s');
                $bookid=$this->Books->set_book($data);
                echo '创建新图书'.$bookname.'<br>';
            }
@@ -113,10 +117,10 @@ class Geturl extends CI_Controller {
                    $articleupdatetime=explode(' 字数:',explode('最后更新时间:',$article)[1])[0];
                    if(count($articleurl)>0){
                   
-                   
+                   $this->Books->set_updatetime($bookid);
                    $isget=$this->Article->get_isexist($articleurl);
                    
-                   if($isget==false){
+                   if($isget==false && count($articleurl)>0 && strstr($articleurl,'我要充值')==false){
                        $article_content=file_get_contents($articleurl);
                        $contentinfo=explode('</div>',explode('<div id="chapterContent" class="content" itemprop="acticleBody">',$article_content)[1])[0];
                        $article_nrjj=substr($contentinfo,200);
@@ -127,15 +131,19 @@ class Geturl extends CI_Controller {
                        $data['bookid']=$bookid;
                        $data['nrjj']=$article_nrjj;
                        $data['url']=$articleurl;
-                       $articleid=$this->Article->set_article($data);
-                       if(!is_dir(dirname(__FILE__).'/../../articles/'.$bookid.'/')){mkdir(dirname(__FILE__).'/../../articles/'.$bookid.'/');}
-                       file_put_contents(dirname(__FILE__).'/../../articles/'.$bookid.'/'.$articleid.'.txt',$contentinfo);
+                       if(count($articlename)>0){
+                           $articleid=$this->Article->set_article($data);
+                           if(!is_dir(dirname(__FILE__).'/../../articles/'.$bookid.'/')){mkdir(dirname(__FILE__).'/../../articles/'.$bookid.'/');}
+                           file_put_contents(dirname(__FILE__).'/../../articles/'.$bookid.'/'.$articleid.'.txt',$contentinfo);
+                        echo '抓取章节：'.$articlename.'<br>';
+                        ob_flush();
+                        flush();
+                        sleep(2);
+                       }
+                      
                    }
                    
-                   echo '抓取章节：'.$articlename.'<br>';
-                   ob_flush();
-                    flush();
-                    sleep(2);
+                  
                    }
                }
            $bookid='';
@@ -149,7 +157,7 @@ class Geturl extends CI_Controller {
         }
         
     }
-   
+    }
     
     
 }

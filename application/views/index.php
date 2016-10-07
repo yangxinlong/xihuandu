@@ -150,9 +150,9 @@ for($i=0;$i<count($bigclassid);$i++){?>
 <dd>
 <div id="txttd4"><div class="txttb4 txtbg1"><ul>
 <?php foreach ($newbookslist as $newbook){?>
-<li><span class="urs4 cGray">[<?php echo $newbook['bigclassname']?>]</span> <span class="urs5"><a href="<?php echo base_url();?>archive.php?aid=<?php echo $newbook['bookid']; ?>" title="<?php echo $newbook['bookname']?>"><?php echo $newbook['bookname']?></a></span>
+<li><span class="urs4 cGray">[<?php echo $newbook['bigclassname']?>]</span> <span class="urs5"><a href="<?php echo base_url();?>archive/index/<?php echo $newbook['bookid']; ?>/" title="<?php echo $newbook['bookname']?>"><?php echo $newbook['bookname']?></a></span>
 
-<span class="urs3 cGray"><?php echo $newbook['updatetime']?></span><a href="<?php echo base_url();?>archive.php?aid=<?php echo $newbook['articleid']; ?>" title="<?php echo $newbook['articlename']; ?>"><?php echo $newbook['articlename']; ?></a>
+<span class="urs3 cGray"><?php echo $newbook['updatetime']?></span><a href="<?php echo base_url();?>archive/read/<?php echo $newbook['articleid']; ?>/" title="<?php echo $newbook['articlename']; ?>"><?php echo $newbook['articlename']; ?></a>
 
 </li>
 <?php }?>

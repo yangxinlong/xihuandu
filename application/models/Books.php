@@ -50,7 +50,7 @@ class Books extends CI_Model{
        return $query->result_array();
    }
    public function get_book($bookid){
-       $query=$this->db->get('books');
+       $query=$this->db->get_where('books',array('id'=>$bookid));
        return $query->row_array();
        
    }
@@ -67,6 +67,11 @@ class Books extends CI_Model{
    public function get_bookid($menu_url){
        $query=$this->db->get_where('books',array('menu_url'=>$menu_url));
        return $query->row_array()['id'];
+   }
+   public function set_updatetime($bookid){
+       $this->db->where('id',$bookid);
+       $this->db->update('books',array('updatetime'=>date('Y-m-d H:i:s')));
+       return true;
    }
 }   
 ?>
