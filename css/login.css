@@ -1,0 +1,13 @@
+﻿body{margin: 0px;}
+a{text-decoration: none; color:#000}
+a:hover{color:#ff0000;text-decoration: underline;}
+td,p,li,input,select,div,span {font-family: 宋体;font-size: 12px;line-height: 21px;color:#000}
+table,td,img,div,span,form{border: none;margin: 0 0 0 0;padding: 0 0 0 0;}
+#logindiv{width:218px;}
+#logindiv #left{ width:156px;float:left; padding:4px 0 0 0}
+#logindiv #right{ width:58px; padding:0 0 0 4px;float:right}
+#logindiv .h{ height:28px;}
+IFRAME{background:#FFFFFF}
+.urs1 a{color:#666666;text-decoration:underline;}
+.urs1 a:hover{color: #C10001;text-decoration: none;}
+.urs {color: #ff6600;}
