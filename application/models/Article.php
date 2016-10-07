@@ -24,6 +24,19 @@ class Article extends CI_Model{
         $query=$this->db->query($sql, array($articleid, $bookid));
         return $query->row_array();
     }
+    public function get_isexist($articleurl){
+        $query=$this->db->get_where('Article',array('url'=>$articleurl));
+        if($query->row_array()==NULL){
+            return false;
+        }else{
+            return true;
+        };
+       
+    }
+    public function set_article($data){
+        $query=$this->db->insert('Article',$data);
+        return $this->db->insert_id();
+    }
     
 }
  ?>

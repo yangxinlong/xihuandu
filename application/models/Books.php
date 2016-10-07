@@ -57,12 +57,16 @@ class Books extends CI_Model{
    public function get_menu_url($bookname){
        $query=$this->db->get_where('books',array('bookname'=>$bookname));
        
-        return $query->menu_url;
+        return $query->row_array()['menu_url'];
        
    }
    public function set_book($data){
       $this->db->insert('books',$data);
-      return;
+      return $this->db->insert_id();
+   }
+   public function get_bookid($menu_url){
+       $query=$this->db->get_where('books',array('menu_url'=>$menu_url));
+       return $query->row_array()['id'];
    }
 }   
 ?>
