@@ -6,7 +6,7 @@
         foreach($booklist as $book){
         if(count($book)>0){
             ?>
-            <li><b><u><a href="<?php echo base_url();?>archive/index/<?php echo $book['id']?>/" title="<?php echo $book['bookname']?>" target="_blank"><img src="<?php echo $book['img']?>"  width="105" height="137" title="<?php echo $book['bookname']?>"></a></u></b><i>[武侠·仙侠]</i><em><a href="/archive.php?aid=<?php echo $book['id']?>" title="<?php echo $book['bookname']?>" target="_blank"><?php echo $book['bookname']?></a></em></li>
+            <li><b><u><a href="<?php echo base_url();?>archive/index/<?php echo $book['id']?>/" title="<?php echo $book['bookname']?>" target="_blank"><img src="<?php echo base_url().'images/bookimages/'.$book['img']?>"  width="105" height="137" title="<?php echo $book['bookname']?>"></a></u></b><i>[武侠·仙侠]</i><em><a href="/archive.php?aid=<?php echo $book['id']?>" title="<?php echo $book['bookname']?>" target="_blank"><?php echo $book['bookname']?></a></em></li>
             <?php }
         }?>
             </ul>

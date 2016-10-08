@@ -14,16 +14,18 @@ class Archive extends CI_Controller {
         $this->load->model('Article');
         $this->load->model('Discuss');
         $this->load->model('Friendlinks');
+        
     }
-    public function index($bookid=1)
+    public function index($bookid)
     {
         
         $book=$this->Books->get_book($bookid);
-        
+       // print_r($book);
         $bigclassid=$book['bigclassid'];
         $data['title']="喜欢读".$bigclassname."";
         $data['bigclasslist'] = $this->Bigclass->get_allbigclass();
         $bigclassname=$this->Bigclass->get_what($bigclassid,'typename');
+        
         $myp =  ' <a href="/">小说频道</a>&nbsp;> <a href="'.base_url().'booklist/index/'.$bigclassid.'">'.$bigclassname.'</a>&nbsp;' ;
         $data['myposition']=$myp;
         
@@ -176,7 +178,7 @@ class Archive extends CI_Controller {
                  $data['myposition']=$myp;
                  
                  $article=$this->Article->get_article($aid);
-                
+               
                  $data['articlename']=$article['articlename'];
                  $data['bigclassid']=$article['bigclassid'];
                  $data['bookid']=$article['bookid'];
@@ -195,7 +197,7 @@ class Archive extends CI_Controller {
                  
                  $data['bigclassname']=$bigclass['typename'];
                  $data['bigclassid']=$bigclass['id'];
-                 $data['contentinfo']= file_get_contents('articles/'.$article['bookid'].'/'.$aid.'.txt');
+                 $data['contentinfo']= read_file(dirname(__FILE__).'/../../articles/'.$article['bookid'].'/'.$aid.'.txt');
                  
                  $next=$this->Article->get_next($article['bookid'],$article['id']);
                  $data['nextid']=$next['id'];

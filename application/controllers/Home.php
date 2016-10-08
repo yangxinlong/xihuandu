@@ -81,21 +81,26 @@ class Home extends CI_Controller {
 		$data1['nrjj']=$nrjj;
 		$data1['img']=$img;
 		$arr=$this->Books->get_last(25);
+		 
 		$i=0;
 		foreach($arr as $a){
 		    $bookid=$a['id'];
 		    $bookname=$a['bookname'];
 		    $bookupdatetime=$a['updatetime'];
 		    $bigclassid=$a['bigclassid'];
-		    $bigclassname=$this->Bigclass->get_what($bookid,'typename');
+		    
+		    $bigclassname=$this->Bigclass->get_what($bigclassid,'typename');
+		    //print_r($bookid);
 		    $article=$this->Article->get_lastarticle($bookid);
+		   // print_r($article);
 		    $articleid=$article['id'];
 		    $articlename=$article['articlename'];
 		   
 		    $newbookslist[$i]=array('bookid'=>$bookid,'bookname'=>$bookname,'updatetime'=>$bookupdatetime, 'bigclassid'=>$bigclassid,'bigclassname'=>$bigclassname,'articleid'=>$articleid,'articlename'=>$articlename);
+		   
 		    $i++;
 		}
-		//print_r($newbookslist);
+		print_r($newbookslist);
 		$data1['newbookslist']=$newbookslist;
 		$data1['djblist']=$this->Books->get_dianji();
 		$favlist=$this->Fav->get_fav();

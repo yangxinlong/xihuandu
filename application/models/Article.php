@@ -11,12 +11,14 @@ class Article extends CI_Model{
     }
     public function get_lastarticle($bookid){
         $this->db->order_by('id','desc');
-        $query=$this->db->get_where('Article',array('id'=>$bookid),0,1);
+        $query=$this->db->get_where('Article',array('bookid'=>$bookid),0,2);
+       // echo $this->db->last_query();
         return $query->row_array();
     }
     public function get_article($articleid){
         $this->db->order_by('id');
-        $query=$this->db->get('Article',array('id'=>$articleid));
+        $query=$this->db->get_where('Article',array('id'=>$articleid));
+         
         return $query->row_array();
     }
     public function get_next($bookid,$articleid){

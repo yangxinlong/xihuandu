@@ -42,7 +42,7 @@ foreach($articlelist as $article){?>
    <?php echo $article['nrjj']?>...
 </dd>
 
-<?php }?>
+<?php $i++; }?>
 </dl></div>
 </dd>
 </dl></div>
@@ -80,7 +80,7 @@ foreach($articlelist as $article){?>
 </div>
 
 <div id="right" class="right">
-<div class="picBox m_b8"><img src="<?php echo $book['img']?>" width="240" height="316" /></div>
+<div class="picBox m_b8"><img src="<?php echo base_url().'images/bookimages/'.$book['img']?>" width="240" height="316" /></div>
 <div class="search m_b8" id="searchbox"><table cellpadding="0">
 <tr>
 <form id="searchform" action="<?php echo base_url()?>/search/index/" method="post" target="_blank">
