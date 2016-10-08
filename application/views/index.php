@@ -12,7 +12,7 @@
     <?php 
     $i=1;
     foreach ($suggestlist as $suggest){?>>
-        <li><a onMouseOver="javascript:showImage(<?php echo $i;?>-1);return false;" title="<?php echo $suggest['bookname']?>" href="<?php echo base_url();?>archive.php?aid=<?php echo $suggest['id']?>" target="_blank"><img title="<?php echo $suggest['nrjj']?>" src="<?php echo $suggest['img']?>" alt="198*257" /></a></li>
+        <li><a onMouseOver="javascript:showImage(<?php echo $i;?>-1);return false;" title="<?php echo $suggest['bookname']?>" href="<?php echo base_url();?>archive/index/<?php echo $suggest['id']?>/" target="_blank"><img title="<?php echo $suggest['nrjj']?>" src="<?php echo $suggest['img']?>" alt="198*257" /></a></li>
     <?php $i++;}?>
        
     </ul>
@@ -67,23 +67,23 @@ function change_bg(d){
 <?php $i=0;
 foreach ($toplist as $top){
 if($i==0){?>
-<h1><a href="<?php echo base_url();?>archive.php?aid=<?php echo $top['id']?>" title="<?php echo $top['bookname']?>"  target="_blank"><?php echo $top['bookname']?></a></h1>
+<h1><a href="<?php echo base_url();?>archive/index/<?php echo $top['id']?>/" title="<?php echo $top['bookname']?>"  target="_blank"><?php echo $top['bookname']?></a></h1>
 <h2>
 <?php }elseif($i<=5){?>
-<a href="<?php echo base_url();?>archive.php?aid=<?php echo $top['id']?>" title="<?php echo $top['bookname']?>"  target="_blank"><?php echo $top['bookname']?></a>
+<a href="<?php echo base_url();?>archive/index/<?php echo $top['id']?>/" title="<?php echo $top['bookname']?>"  target="_blank"><?php echo $top['bookname']?></a>
 
 <?php }else{
 if($i==6) ?>
 </h2>
 <div id="txtpic"  onmouseover="change_bg(this);">
-<div class="txtpic_r"><b><a href="<?php echo base_url();?>archive.php?aid=<?php echo $top['id']?>" title="<?php echo $top['bookname']?>"><?php echo $top['bookname']?></a></b><br>    　　
+<div class="txtpic_r"><b><a href="<?php echo base_url();?>archive/index/<?php echo $top['id']?>/" title="<?php echo $top['bookname']?>"><?php echo $top['bookname']?></a></b><br>    　　
 <?php if(strlen($top['nrjj'])>80){
     echo substr_cut($top['nrjj'],80);
     }else{
         echo $top['nrjj'];
-    }?> <a href="<?php echo base_url();?>archive.php?aid=<?php echo $top['id'];?>"  target="_blank">阅读&gt;&gt;</a>
+    }?> <a href="<?php echo base_url();?>archive/index/<?php echo $top['id'];?>/"  target="_blank">阅读&gt;&gt;</a>
 </div>
-<div class="txtpic_l pic_on"><a href="<?php echo base_url();?>archive.php?aid=<?php echo $top['id']?>" target="_blank"><img src="<?php echo base_url();?>/image/<?php echo $top['img'];?>"  width="66" height="87" title=""></a></div>
+<div class="txtpic_l pic_on"><a href="<?php echo base_url();?>archive/index/<?php echo $top['id']?>/" target="_blank"><img src="<?php echo base_url();?>/image/<?php echo $top['img'];?>"  width="66" height="87" title=""></a></div>
 </div>
 <?php }
 $i++;}?>
@@ -100,10 +100,10 @@ $i++;}?>
 <table cellpadding="0" cellspacing="10"><tr><td width="262">
 
 <div id="txtpic_fm">
-<div class="txtpic_fm_l pic_on"><a href="<?php echo base_url();?>archive.php?aid=<?php echo $lastbookid;?>" target="_blank"><img src="<?php echo base_url();?>images/bookimages/<?php echo $lastbookimg;?>"  width="105" height="137" title="<?php echo $lastbookname;?>"></a></div>
+<div class="txtpic_fm_l pic_on"><a href="<?php echo base_url();?>archive/index/<?php echo $lastbookid;?>/" target="_blank"><img src="<?php echo base_url();?>images/bookimages/<?php echo $lastbookimg;?>"  width="105" height="137" title="<?php echo $lastbookname;?>"></a></div>
 <div class="txtpic_fm_r">
-<div class="font14" style="padding:5px 0"><a href="<?php echo base_url();?>archive.php?aid=<?php echo $lastbookid;?>" target="_blank" ><?php echo $lastbookname;?></a></div>
-<span class="orange_u"><?php echo $lastbooknrjj;?>  <A href="<?php echo base_url();?>archive.php?aid=<?php echo $lastbookid;?>"  target=_blank>点击阅读</A></span></div>
+<div class="font14" style="padding:5px 0"><a href="<?php echo base_url();?>archive/index/<?php echo $lastbookid;?>/" target="_blank" ><?php echo $lastbookname;?></a></div>
+<span class="orange_u"><?php echo $lastbooknrjj;?>  <A href="<?php echo base_url();?>archive/index/<?php echo $lastbookid;?>/"  target=_blank>点击阅读</A></span></div>
 </div>
 
 </td>
@@ -112,7 +112,7 @@ $i++;}?>
 <div class="newtxt">
     <ul>
     <?php foreach($news as $new){?>
-        <li><a  href="<?php echo base_url();?>archive.php?aid=<?php echo $new['id'];?>" target="_blank" ><?php echo $new['bookname'];?></a></li>
+        <li><a  href="<?php echo base_url();?>archive/index/<?php echo $new['id'];?>/" target="_blank" ><?php echo $new['bookname'];?></a></li>
      <?php }?>   
        
      </ul>
@@ -131,9 +131,9 @@ for($i=0;$i<count($bigclassid);$i++){?>
 <dd>
 <?php if(isset($bookid[$i])){?>
 <table cellpadding="0" cellspacing="10">
-    <tr><td><div style="padding-top:5px" class="black_u"><img src="<?php echo base_url();?>images/hot2.gif"  align="absmiddle" />  <a href="<?php echo base_url();?>archive.php?aid=<?php echo $bookid[$i]?>" target="_blank"><b ><?php echo $bookname[$i];?></b></a>
-</div><div class="PicOut_F" onMouseOver="className='PicOver_F'"  onmouseout="className='PicOut_F'"><div id="txtpic_66" ><div class="txtpic_66_r orange_u"><?php if(strlen($nrjj[$i])>60){echo substr_cut($nrjj[$i],60);}else{echo $nrjj[$i];}?><A href="<?php echo base_url();?>archive.php?aid=<?php echo $bookid[$i]?>"  target="_blank">阅读作品&gt;&gt;</A></div>
-<div class="txtpic_66_l pic_on"><a href="<?php echo base_url();?>archive.php?aid=<?php echo $bookid[$i];?>" target="_blank"><img src="<?php echo base_url();?>images/bookimages/<?php echo $img[$i];?>"  width="66" height="87" title=""></a></div></div></div>
+    <tr><td><div style="padding-top:5px" class="black_u"><img src="<?php echo base_url();?>images/hot2.gif"  align="absmiddle" />  <a href="<?php echo base_url();?>archive/index/<?php echo $bookid[$i]?>/" target="_blank"><b ><?php echo $bookname[$i];?></b></a>
+</div><div class="PicOut_F" onMouseOver="className='PicOver_F'"  onmouseout="className='PicOut_F'"><div id="txtpic_66" ><div class="txtpic_66_r orange_u"><?php if(strlen($nrjj[$i])>60){echo substr_cut($nrjj[$i],60);}else{echo $nrjj[$i];}?><A href="<?php echo base_url();?>archive/index/<?php echo $bookid[$i]?>/"  target="_blank">阅读作品&gt;&gt;</A></div>
+<div class="txtpic_66_l pic_on"><a href="<?php echo base_url();?>archive/index/<?php echo $bookid[$i];?>/" target="_blank"><img src="<?php echo base_url();?>images/bookimages/<?php echo $img[$i];?>"  width="66" height="87" title=""></a></div></div></div>
 <div class="hottxt"><ul>
 </ul></div></td></tr>
 </table>
@@ -192,20 +192,20 @@ for($i=0;$i<count($bigclassid);$i++){?>
 
     ?>
     
-     <li><span><?php echo $djb['lookcount'];?></span><a href="<?php echo base_url();?>archive.php?aid=<?php echo $djb['id']?>" target="_blank" ><?php echo $djb['bookname']?></a></li>
+     <li><span><?php echo $djb['lookcount'];?></span><a href="<?php echo base_url();?>archive/index/<?php echo $djb['id']?>/" target="_blank" ><?php echo $djb['bookname']?></a></li>
 <?php }?>
    
     
   </ul></div>
 <div style="display:none;"><ul>
 <?php foreach($favlist as $fav){?>
-<li><span><?php echo $fav['favcount']?></span><a href="<?php echo base_url();?>archive.php?aid=<?php echo $fav['bookid']?>" target="_blank" ><?php echo $fav['bookname']?></a></li>
+<li><span><?php echo $fav['favcount']?></span><a href="<?php echo base_url();?>archive/index/<?php echo $fav['bookid']?>/" target="_blank" ><?php echo $fav['bookname']?></a></li>
 <?php }?>
  
 </ul></div>
 <div style="display:none"><ul>
 <?php foreach($dislist as $dis){?>
-<li><span><?php echo $dis['discount']?></span><a href="<?php echo base_url();?>archive.php?aid=<?php echo $dis['bookid']?>" target="_blank" ><?php echo $dis['bookname']?></a></li>
+<li><span><?php echo $dis['discount']?></span><a href="<?php echo base_url();?>archive/index/<?php echo $dis['bookid']?>/" target="_blank" ><?php echo $dis['bookname']?></a></li>
 <?php }?>
  
 </ul></div>
