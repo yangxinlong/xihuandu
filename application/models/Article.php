@@ -39,6 +39,9 @@ class Article extends CI_Model{
         $query=$this->db->insert('Article',$data);
         return $this->db->insert_id();
     }
-    
+    public function get_menu($bookid){
+        $query=$this->db->get_where('Article',array('bookid'=>$bookid));
+        return $query->result_array();
+    }
 }
  ?>

@@ -103,25 +103,11 @@ foreach ($bigclasslist as $bigclass){?>
        
   <div class="blank18"></div>
     <div class="blank9"></div>
-    <div class="pagenav1">  <a href="<?php echo base_url()?>archive/index/<?php echo $bookid?>/">【目录】</a>  <?php if($nextid!=""){?><a href="<?php echo base_url()?>archive/read/<?php echo $nextid?>/" class="btn">下一篇：<?php echo $nextname?></a><?php }?></div>
+    <div class="pagenav1">  <a href="<?php echo base_url()?>menu/index/<?php echo $bookid?>/">【目录】</a>  <?php if($nextid!=""){?><a href="<?php echo base_url()?>archive/read/<?php echo $nextid?>/" class="btn">下一篇：<?php echo $nextname?></a><?php }?></div>
     <div class="blank9"></div>
     </div>
 </div>
-<script type="text/javascript">
-function set_stat(s){
-    var k, o;
-    s = s['60883'];
-    if(!s)return;
-    for(k in s){
-        o = $id('cms_' + k);
-        if(o)o.innerHTML = s[k];
-        o = $id('ccms_' + k);
-        if(o)o.innerHTML = s[k];
-    }
-}
-ajax_get_stat('60883', set_stat);
 
-</script>
 
 <div id="foot">
 <span>

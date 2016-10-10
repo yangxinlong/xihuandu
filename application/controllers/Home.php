@@ -100,7 +100,7 @@ class Home extends CI_Controller {
 		   
 		    $i++;
 		}
-		print_r($newbookslist);
+		//print_r($newbookslist);
 		$data1['newbookslist']=$newbookslist;
 		$data1['djblist']=$this->Books->get_dianji();
 		$favlist=$this->Fav->get_fav();
